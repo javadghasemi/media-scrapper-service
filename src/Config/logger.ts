@@ -14,8 +14,23 @@ export const logger: expressWinston.LoggerOptions = {
     timestamp(),
     myFormat
   ),
+  meta: true,
   colorize: true,
   transports: [
     new winston.transports.Console()
-  ]
+  ],
+  requestWhitelist: ['query'],
+  dynamicMeta:  (req, _res) => {
+    type metadata = {
+      requestMethod: string | undefined,
+      requestUrl: string | undefined
+    }
+
+    const meta: metadata = {
+      requestMethod: req.method,
+      requestUrl: `${req.protocol}://${req.get('host')}${req.originalUrl}`
+    }
+
+    return meta;
+  }
 }

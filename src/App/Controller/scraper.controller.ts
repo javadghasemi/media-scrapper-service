@@ -28,6 +28,7 @@ export class ScraperController {
 
       response.json(songInfo);
     } catch (e: any) {
+
       next(e);
       // response.statusCode = 500;
       // let errorRes: { code: string, message: string } = UnexpectedError;
@@ -93,6 +94,6 @@ export class ScraperController {
         };
     }
 
-    throw new ScraperException(ProviderNotFound.message, ProviderNotFound.code);
+    throw new ScraperException(ProviderNotFound.message, ProviderNotFound.code, ProviderNotFound.statusCode);
   }
 }

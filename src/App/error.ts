@@ -5,15 +5,18 @@ export const TrackNotFound = {
 
 export const InvalidUrl = {
   code: 'InvalidUrl',
-  message: `Invalid song url!`
+  message: `Invalid song url!`,
+  statusCode: 500
 };
 
 export const UnexpectedError = {
   code: 'UnexpectedError',
-  message: 'Unexpected error happened'
+  message: 'Unexpected error happened',
+  statusCode: 500
 }
 
 export const ProviderNotFound = {
-  code: 'UnexpectedError',
-  message: 'Unexpected error happened'
+  code: 'ProviderNotFound',
+  message: 'Provider not found',
+  statusCode: 404
 }

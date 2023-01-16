@@ -7,5 +7,5 @@ export function specifyProvider(url: string): ProviderEnum {
     return ProviderEnum.SOUNDCLOUD;
   }
 
-  throw new ScraperException(ProviderNotFound.message, ProviderNotFound.code);
+  throw new ScraperException(ProviderNotFound.message, ProviderNotFound.code, ProviderNotFound.statusCode);
 }

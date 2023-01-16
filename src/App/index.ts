@@ -4,8 +4,9 @@ import {createServer, Server} from "http";
 import express, {Application} from 'express';
 import bodyParser from 'body-parser';
 import expressWinston from 'express-winston';
-
 import router from "./router";
+import requestId from "./Middleware/request-id.middleware";
+import {ExceptionHandler} from "./Exception/handler.exception";
 
 
 type ApplicationConfig = {
@@ -43,8 +44,10 @@ export default class App {
      */
     this.app.use(bodyParser.urlencoded({extended: false}));
     this.app.use(bodyParser.json());
+    this.app.use(requestId);
     this.app.use(expressWinston.logger(this.config.logger));
     this.app.use(router);
+    this.app.use(ExceptionHandler.handle);
   }
 
   /**
