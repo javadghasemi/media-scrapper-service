@@ -22,29 +22,13 @@ export class ScraperController {
 
   public async info(request: Request<{}, {}, {}, { url: string }>, response: Response, next: NextFunction): Promise<void> {
     try {
-      const url: string = request.query.url;
+      let url: string = request.query.url;
       const provider: ProviderEnum = specifyProvider(url);
       const songInfo: Information = await this.getInfo(url, provider);
 
       response.json(songInfo);
     } catch (e: any) {
-
       next(e);
-      // response.statusCode = 500;
-      // let errorRes: { code: string, message: string } = UnexpectedError;
-      //
-      // if (e instanceof ScraperException || e.message === InvalidUrl.message) {
-      //   response.statusCode = 404;
-      //   errorRes = {
-      //     code: e.code,
-      //     message: e.message
-      //   }
-      // } else if (e.message === InvalidUrl.message) {
-      //   response.statusCode = 404;
-      //   errorRes = InvalidUrl;
-      // }
-      //
-      // response.json(errorRes);
     }
   }
 
